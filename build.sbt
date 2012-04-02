@@ -31,6 +31,10 @@ scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-Xcheckinit")
 //  Seq("-doc-title", name, "-doc-version", ver)
 //}
 
-publishTo := Some("Scala-Tools Nexus Repository for Releases" at "http://nexus.scala-tools.org/content/repositories/releases")
+publishTo := Some(Resolver.file("file",  new File( "./repository" )) )
 
-credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
+// disable publishing the main API jar
+publishArtifact in (Compile, packageDoc) := false
+
+// disable publishing the main sources jar
+publishArtifact in (Compile, packageSrc) := false
